@@ -1,0 +1,38 @@
+-- transaction_data table:
+
+SELECT * 
+FROM transaction_data
+LIMIT 10;
+
+-- Find names and email addresses of the fraudulent transaction listing 2052 (zip code).
+
+SELECT full_name, email, zip
+FROM transaction_data
+WHERE zip = 20252;
+
+-- Names of  emails associcated with a false name 'Art Vandeley' and 'der'
+
+SELECT full_name, email
+FROM transaction_data
+WHERE full_name = 'Art Vandelay'
+  OR full_name LIKE '% der %';
+
+-- Irregularities in the IP addresses beginning with '10'. ip_addresses and emails listed with these transactions
+
+SELECT ip_address, email
+FROM transaction_data
+WHERE ip_address LIKE '10.%';
+
+-- Fradulent transaction using a temporary email. List of email addresses with 'temp_email.com' as a domain
+
+SELECT email 
+FROM transaction_data
+WHERE email LIKE '%temp_email.com';
+
+-- Find a specific transaction with an ip address starting with '120' and full name starting with 'John'.
+
+SELECT full_name, ip_address
+FROM transaction_data
+WHERE ip_address LIKE '120.%'
+  AND full_name LIKE 'John%';
+
